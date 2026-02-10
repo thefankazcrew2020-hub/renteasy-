@@ -1,10 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>RentEasy</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RentEasy – Rent Houses Easily</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS unchanged, keep the same */
+  </style>
 </head>
 <body>
-<h1>RentEasy Placeholder</h1>
+
+  <!-- NAVBAR, HERO unchanged -->
+
+  <!-- HOUSES -->
+  <section id="houses">
+    <h2>Available Houses</h2>
+    <div style="text-align:center;margin-bottom:30px;">
+      <button class="btn" onclick="filterHouses('all')">All</button>
+      <button class="btn" onclick="filterHouses('family')">Family House</button>
+      <button class="btn" onclick="filterHouses('single')">Single House</button>
+      <button class="btn" onclick="filterHouses('apartment')">Apartment</button>
+    </div>
+    <div class="houses">
+
+      <!-- FAMILY HOUSE -->
+      <div class="house-card" data-type="family">
+        <div class="house-images">
+          <img src="family/family1.jpg" class="active" alt="Family House Image 1">
+          <img src="family/family1_2.jpg" alt="Family House Image 2">
+          <img src="family/family1_3.jpg" alt="Family House Image 3">
+        </div>
+        <div class="slider-controls">
+          <button onclick="prevImage(this)">‹</button>
+          <button onclick="nextImage(this)">›</button>
+        </div>
+        <div class="house-info">
+          <h3>Family House</h3>
+          <span>Family House</span>
+          <p>3 Bedrooms • 2 Bathrooms • Parking</p>
+          <div class="price">$400 / month</div>
+          <p><strong>Location:</strong> Kimironko, Kigali</p>
+          <a href="https://www.google.com/maps?q=Kigali+Kimironko" target="_blank" class="btn">View on Google Maps</a>
+          <a href="https://wa.me/250700000000" target="_blank" class="btn">Book via WhatsApp</a>
+          <div class="map">
+            <iframe src="https://www.google.com/maps?q=Kigali+Kimironko&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- SINGLE HOUSE -->
+      <div class="house-card" data-type="single">
+        <div class="house-images">
+          <img src="single/single1.jpg" class="active" alt="Single House Image 1">
+          <img src="single/single1_2.jpg" alt="Single House Image 2">
+          <img src="single/single1_3.jpg" alt="Single House Image 3">
+        </div>
+        <div class="slider-controls">
+          <button onclick="prevImage(this)">‹</button>
+          <button onclick="nextImage(this)">›</button>
+        </div>
+        <div class="house-info">
+          <h3>Single House</h3>
+          <span>Single House</span>
+          <p>1 Bedroom • Kitchen • Private Entrance</p>
+          <div class="price">$250 / month</div>
+          <p><strong>Location:</strong> Nyamirambo, Kigali</p>
+          <a href="https://www.google.com/maps?q=Kigali+Nyamirambo" target="_blank" class="btn">View on Google Maps</a>
+          <a href="https://wa.me/250700000000" target="_blank" class="btn">Book via WhatsApp</a>
+          <div class="map">
+            <iframe src="https://www.google.com/maps?q=Kigali+Nyamirambo&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- APARTMENT -->
+      <div class="house-card" data-type="apartment">
+        <div class="house-images">
+          <img src="apartment/house2.jpg" class="active" alt="Apartment Image 1">
+          <img src="apartment/house2_2.jpg" alt="Apartment Image 2">
+          <img src="apartment/house2_3.jpg" alt="Apartment Image 3">
+        </div>
+        <div class="slider-controls">
+          <button onclick="prevImage(this)">‹</button>
+          <button onclick="nextImage(this)">›</button>
+        </div>
+        <div class="house-info">
+          <h3>Luxury Apartment</h3>
+          <span>Apartment</span>
+          <p>1 Bedroom • Balcony • Security</p>
+          <div class="price">$500 / month</div>
+          <p><strong>Location:</strong> Kacyiru, Kigali</p>
+          <a href="https://www.google.com/maps?q=Kigali+Kacyiru" target="_blank" class="btn">View on Google Maps</a>
+          <a href="https://wa.me/250700000000" target="_blank" class="btn">Book via WhatsApp</a>
+          <div class="map">
+            <iframe src="https://www.google.com/maps?q=Kigali+Kacyiru&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function filterHouses(type){
+      const houses=document.querySelectorAll('.house-card');
+      houses.forEach(house=>{
+        house.style.display=(type==='all' || house.dataset.type===type)?'block':'none';
+      });
+    }
+    function nextImage(btn){
+      const card = btn.closest('.house-card');
+      const images = card.querySelectorAll('.house-images img');
+      let index = [...images].findIndex(img=>img.classList.contains('active'));
+      images[index].classList.remove('active');
+      images[(index+1)%images.length].classList.add('active');
+    }
+    function prevImage(btn){
+      const card = btn.closest('.house-card');
+      const images = card.querySelectorAll('.house-images img');
+      let index = [...images].findIndex(img=>img.classList.contains('active'));
+      images[index].classList.remove('active');
+      images[(index-1+images.length)%images.length].classList.add('active');
+    }
+  </script>
 </body>
 </html>
